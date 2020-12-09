@@ -61,8 +61,10 @@ Alanzoka
 Sypherpk
 Loltyler1
 Tsm_Daequan
-Ibai;Mongraal
-Fresh;Bugha
+Ibai
+Mongraal
+Fresh
+Bugha
 Heymynameskay
 Elded
 Montanablack88
@@ -82,7 +84,7 @@ Nobru
 Coscu
 Juansguarnizo
 Tsm_Hamlinz
-Loserfruit;
+Loserfruit
 Klarcthekid
 Nickeh30
 Dreamwastaken

@@ -49,9 +49,9 @@ class AVL_Tree(object):
         if not root: 
             return root 
         elif player.score < root.val: 
-            root.left = self.delete(root.left, key) 
+            root.left = self.delete(root.left, player) 
         elif player.score > root.val: 
-            root.right = self.delete(root.right, key) 
+            root.right = self.delete(root.right, player) 
         else: 
             if root.left is None: 
                 temp = root.right 
@@ -147,14 +147,14 @@ class AVL_Tree(object):
         res = []
         if root:
             res = self.inorderTraversal(root.left)
-            res.append(root.data)
+            res.append(root.player)
             res = res + self.inorderTraversal(root.right)
         return res
     
     def PreorderTraversal(self, root):
         res = []
         if root:
-            res.append(root.data)
+            res.append(root.player)
             res = res + self.PreorderTraversal(root.left)
             res = res + self.PreorderTraversal(root.right)
         return res
@@ -164,7 +164,7 @@ class AVL_Tree(object):
         if root:
             res = self.PostorderTraversal(root.left)
             res = res + self.PostorderTraversal(root.right)
-            res.append(root.data)
+            res.append(root.player)
         return res
 
 def CreateAVL(list_players):
