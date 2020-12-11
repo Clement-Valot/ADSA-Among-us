@@ -89,9 +89,13 @@ def dijsktra(graph, initial_node):
 
 
 if __name__ == "__main__":
-    graph = Create_map_crewmate()
+    graph_crew_mate = Create_map_crewmate()
+    graph_impostor = Create_map_impostor()
 
-    resultat = dijsktra(graph,"RE")
+    resultat = dijsktra(graph_crew_mate,"RE")
     print(resultat)
-    resultat2 = dijsktra(graph,"RE")
+    resultat2 = dijsktra(graph_crew_mate,"RE")
     print(resultat2)
+
+    resultat3 = dijsktra(graph_impostor,"RE")
+    print(resultat3)
