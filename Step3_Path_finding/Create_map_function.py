@@ -1,6 +1,12 @@
 from GraphClass import *
 
+'''
+#* This function create the crew mate map thanks to the class graph
+
+#? Return the crew mate graph
+'''
 def Create_map_crewmate():
+    # Initialize the graph
     graph = Graph()
     # We add the node of the graph (14)
     graph.add_node("UE")
