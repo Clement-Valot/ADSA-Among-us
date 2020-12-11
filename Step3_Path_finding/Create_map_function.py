@@ -1,5 +1,4 @@
 from GraphClass import *
-
 '''
 #* This function create the crew mate map thanks to the class graph
 
