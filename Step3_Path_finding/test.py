@@ -22,6 +22,8 @@ def dijsktra(graph, initial_node):
     visited = {initial_node : 0}
     #Tems qu'on a pas visité toutes les nodes, ou que la node final n'est pas atteinte
     while len(visited) != len(graph.dico_nodes):
+        print("visited = {}".format(len(visited)))
+        print("diconode = {}".format(len(graph.dico_nodes)))
         min_node_visited = None
         min_distance = 100
         #Pour chaque node qui ont deja été visité:
