@@ -3,6 +3,7 @@ class Node:
         self.left = None
         self.right = None
         self.player = player
+        self.height=0
 
 class AVL_Tree(object): 
 
@@ -99,6 +100,7 @@ class AVL_Tree(object):
   
         return root 
 
+
     def leftRotate(self, z): 
 
         y = z.right 
@@ -142,7 +144,6 @@ class AVL_Tree(object):
         return self.getHeight(root.left) - self.getHeight(root.right) 
 
     
-    
     def inorderTraversal(self, root):
         res = []
         if root:
@@ -172,5 +173,6 @@ def CreateAVL(list_players):
     root=None
     for i in range (len(list_players)):
         root=AVL.insert(root,list_players[i])
+        # AVL.insert(root,list_players[i])
     return AVL
 
