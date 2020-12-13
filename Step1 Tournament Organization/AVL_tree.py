@@ -1,9 +1,9 @@
-class Node:
+class Node(object):
     def __init__(self, player):
         self.left = None
         self.right = None
         self.player = player
-        self.height=0
+        self.height=1
 
 class AVL_Tree(object): 
 
@@ -30,11 +30,11 @@ class AVL_Tree(object):
             return self.rightRotate(root) 
 
 		# Case 2 - Right Right 
-        if balance < -1 and player.score > root.right.player.score: 
+        if balance < -1 and player.score >= root.right.player.score: 
             return self.leftRotate(root) 
 
 		# Case 3 - Left Right 
-        if balance > 1 and player.score > root.left.player.score: 
+        if balance > 1 and player.score >= root.left.player.score: 
             root.left = self.leftRotate(root.left) 
             return self.rightRotate(root) 
 
@@ -171,8 +171,6 @@ class AVL_Tree(object):
 def CreateAVL(list_players):
     AVL = AVL_Tree()
     root=None
-    for i in range (len(list_players)):
-        root=AVL.insert(root,list_players[i])
-        # AVL.insert(root,list_players[i])
-    return AVL
-
+    for player in list_players:
+        root=AVL.insert(root,player)
+    return AVL, root
