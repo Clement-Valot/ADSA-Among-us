@@ -19,6 +19,7 @@ def compare_both_model(graph_crewmate, graph_impostor):
     # Then we visit all the result of the crew mate graph
     for i in range(len(list_of_result_crewmate)):
         for j in range(len(list_of_result_impostor)):
+            condition = False
             # If the result of the crew mate as the same starting node and ending node thant the result of the impostor we compare them
             if list_of_result_crewmate[i][0] == list_of_result_impostor[j][0] and list_of_result_crewmate[i][1] == list_of_result_impostor[j][1]:
                 condition = True
@@ -29,6 +30,5 @@ def compare_both_model(graph_crewmate, graph_impostor):
                 difference = list_of_result_crewmate[i][2] - list_of_result_impostor[j][2]
                 # We print the result
                 print_result(list_of_result_crewmate[i][0], list_of_result_crewmate[i][1], difference)
-                print(i)
                 break
 

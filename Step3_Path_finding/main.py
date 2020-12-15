@@ -57,6 +57,6 @@ def Question4():
 
 
 if __name__ == "__main__":
-    Question2()
-    #Question3()
-    #Question4()
+    #Question2()
+    Question3()
+    Question4()
