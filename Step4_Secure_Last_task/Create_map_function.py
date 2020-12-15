@@ -28,6 +28,4 @@ def Create_map_crewmate():
                                 columns = list_room, index = list_room)
     return graph
 
-graph_crew_mate = Create_map_crewmate()
-print(graph_crew_mate.graph)
 

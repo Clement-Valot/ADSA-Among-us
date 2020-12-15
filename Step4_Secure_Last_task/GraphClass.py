@@ -88,7 +88,7 @@ class Graph:
     # and a position of 1 (because one node is already in the path)
     if self.Hamiltonian(path,1) == False:
       # If the result is false it means there is no Hamiltonian path from the starting node  
-      print ("Solution does not exist for room : {}\n".format(list_room[starting_node])) 
+      print ("Solution does not exist when we take {} as the original room \n".format(list_room[starting_node])) 
       return False
 
     # If we didn't return false previously, it means the Hamiltonian path exist
@@ -109,4 +109,5 @@ class Graph:
     # The path list is composed of node represented by their index in the adjacency matrix
     # So for each node (index) we print it in thanks to its corresponding room contain in list_room
     for vertex in path:
-      print (list_room[vertex] , " ") 
+      print (list_room[vertex] , end =" ") 
+    print("\n")
