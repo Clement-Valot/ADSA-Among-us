@@ -1,13 +1,14 @@
 from Q2_dijkstra import *
 
 '''
-#* Function use in all time to verify a condition
+#* Function use in all time to verify that a node is not coupled with itself 
+#* it happened for the first node of dijkstra
+#* We also verify that the node is not already in the list of result (we don't want a repeat)
 
-#? result : tuple composed of (first_node, last_node, cost)
+#? result : list composed of (first_node, last_node, cost)
 #? list_of_all_result : list that contain all the result that we already visit
 
 #? return the condition
-
 '''
 def Condition_for_all_time(result, list_of_all_result):
     condition = True
@@ -28,7 +29,7 @@ def Condition_for_all_time(result, list_of_all_result):
 
 
 '''
-#* Function that allows to show the time to travel for any pair of rooms for a graph
+#* Allows to show the time to travel for any pair of rooms for a graph
 
 #? graph : crew mate graph or impostor graph
 
@@ -49,7 +50,7 @@ def all_time(graph):
         dict_of_result = dijsktra(graph, start_node)
         # For every result
         for node_final, value in dict_of_result.items():
-            # We create a tuple of the result
+            # We create a element of the result
             result = ((start_node, node_final, value))
             # We verify the condition (see below to see all the condition)
             condition = Condition_for_all_time(result, list_of_all_result)

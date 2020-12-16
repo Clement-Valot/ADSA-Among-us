@@ -22,6 +22,7 @@ def Question2():
     print("resultat 3:")
     resultat3 = dijsktra(graph_impostor,"UE")
     print(resultat3)
+
     
 '''
 #* Function to execute to test the question 3
@@ -46,11 +47,11 @@ def Question3():
     print_the_result(list_of_result_impostor)
     print("The lenght is : {}".format(len(list_of_result_impostor)))
 
+
 '''
 #* Function to execute to test question 3
 #* This function compare the time travel between the two model for any paif of room
 '''
-
 def Question4():
     # We create the 2 graph
     graph_crew_mate = Create_map_crewmate()

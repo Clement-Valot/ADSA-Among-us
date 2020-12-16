@@ -5,7 +5,7 @@ def print_result(first_node, last_node, difference):
 
 
 '''
-#* Function that allows us to display the interval of time between impostor and crew mate for each pair room
+#* Function that allows us to display the interval of time between impostor and crew mate for each pair of rooms
 
 #? graph_crewmate : graph of the crew mate
 #? graph_impostor : graph of the impostor
@@ -20,7 +20,7 @@ def compare_both_model(graph_crewmate, graph_impostor):
     for i in range(len(list_of_result_crewmate)):
         for j in range(len(list_of_result_impostor)):
             condition = False
-            # If the result of the crew mate as the same starting node and ending node thant the result of the impostor we compare them
+            # If the result of the crew mate as the same starting node and ending node than the result of the impostor then we compare the distance
             if list_of_result_crewmate[i][0] == list_of_result_impostor[j][0] and list_of_result_crewmate[i][1] == list_of_result_impostor[j][1]:
                 condition = True
             if list_of_result_crewmate[i][1] == list_of_result_impostor[j][0] and list_of_result_crewmate[i][0] == list_of_result_impostor[j][1]:
