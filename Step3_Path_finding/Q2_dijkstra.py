@@ -55,20 +55,21 @@ def dijsktra(graph, initial_node):
         for node_key, node_value in visited.items():
             neighbour = []
             distance = 0
-            # We look at every edges of the node (so at all his neighboor, except the one remove because already visited)
+            # We look at every edges of the node (so at all his neighbour, except the one remove because already visited)
             for elements in list_of_edges:
-                # If the start node of the edge is the node we visit, it means it's a neighboor
-                # therefore we add it to the list of neighboor
+                # If the start node of the edge is the node we visit, it means it's a neighbour
+                # therefore we add it to the list of neighbour
                 if elements[0] == node_key:
                     neighbour.append((elements[1], elements[2]))
-                # If the end node of the edge is the node we visit, it means it's a neighboor
-                # therefore we add it to the list of neighboor
+                # If the end node of the edge is the node we visit, it means it's a neighbour
+                # therefore we add it to the list of neighbour
                 if elements[1] == node_key:
                     neighbour.append((elements[0], elements[2]))
-            # We visit the neighboor in the search of the minimum edge
+            # We visit the neighbour in the search of the minimum edge
             for name_node_and_cost in neighbour:
-                # The distance is the distance already traveled + the edge
-                # The distance already travel is the cost of the node
+                # The distance is the distance already traveled + the edge 
+                # between the node already visited and the neighbor (adjacent room)
+                # The distance already traveled is the cost of the node
                 distance = node_value + name_node_and_cost[1]
                 # If it is indeed a minimum
                 if distance < min_distance:

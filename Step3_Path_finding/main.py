@@ -12,10 +12,14 @@ def Question2():
     graph_impostor = Create_map_impostor()
     
     resultat = dijsktra(graph_crew_mate,"RE")
+    print("resultat 1:")
     print(resultat)
+
     resultat2 = dijsktra(graph_crew_mate,"UE")
+    print("resultat 2:")
     print(resultat2)
 
+    print("resultat 3:")
     resultat3 = dijsktra(graph_impostor,"UE")
     print(resultat3)
     
@@ -57,6 +61,6 @@ def Question4():
 
 
 if __name__ == "__main__":
-    #Question2()
+    Question2()
     Question3()
     Question4()
