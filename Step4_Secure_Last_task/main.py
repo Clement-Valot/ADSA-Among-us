@@ -28,7 +28,7 @@ def adjecent_room(graph, room):
 #* Function to execute test for question 4
 #* This function shows our result for the part 4
 #* We take "CA" as the original node
-#* We show all the possible Hamiltonian path that begin from adjacents rooms
+#* We show all the possible Hamiltonian path that begin from adjacents rooms of "CA"
 '''
 def Question4():
     # We first initialize the graph

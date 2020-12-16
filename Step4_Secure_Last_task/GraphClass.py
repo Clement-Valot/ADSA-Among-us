@@ -44,7 +44,7 @@ class Graph:
   #? pos : store the position (the state of the recursive function)
   '''
   def Hamiltonian(self, path, pos):
-    # if all vertices are included in the path we stop the recursion and return true
+    # if all vertices are included in the path we stop the recursion and return true (base case)
     if pos == self.N: 
       return True
   
