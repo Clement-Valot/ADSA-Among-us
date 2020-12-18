@@ -25,11 +25,11 @@ class AVL_Tree(object):
         balance = self.getBalance(root) 
 
 		# Step 4 - If the node is unbalanced, then try out the 4 cases 
-		# Case 1 - Left Left 
+		# Case 1 - Right 
         if balance > 1 and player.score < root.left.player.score: 
             return self.rightRotate(root) 
 
-		# Case 2 - Right Right 
+		# Case 2 - Left 
         if balance < -1 and player.score >= root.right.player.score: 
             return self.leftRotate(root) 
 

@@ -4,8 +4,8 @@ from AVL_tree import *
 
 def RandomGames(list_players):
     random_game=1
+    AVL, root = CreateAVL(list_players)
     for i in range (3):
-        AVL, root = CreateAVL(list_players)
         #In order to avoid players to play against the same players during the 3 random games,
         #We chose to separate them thanks to the inorder, preorder and postorder sorting algorithm
         if(random_game==1):
@@ -15,20 +15,24 @@ def RandomGames(list_players):
         elif(random_game==3):
             list_players=AVL.PreorderTraversal(root)
 
+        #We create games and update scores
+        CreateGames(list_players, random_game)
         for player in list_players:
             player.updateScore(random_game)
         random_game+=1
+    #To display the players with their name, their score in order depending on their ranking,
+    #We create an AVL tree to order those players according to thei score, 
     AVL, root = CreateAVL(list_players)
+    #Then we get the list of players in order from this tree meaning from the one with
     list_players=AVL.inorderTraversal(root)
-    UpdateRankingPlayers(list_players)
+    #the lowest score to the highest. Finally we Update their rank
+    UpdateRankingPlayers(list_players) 
     print("\nHere are the scores and ranking after the 3 random games:")
     DisplayPlayers(list_players)
 
 def RankedGames(list_players):
     print("\n\n\nLet's begin the ranked games with elimination!")
-    ranked_game=1
-    #Optionnal array retrieving eliminated players to keep track of all of them and not only the 10 best.
-    eliminated_players=[]
+    ranked_game=4
     #We create the loop that is going to generate the matches leading to 10 remaining players
     #The loop is going from 0 to 8 so 9 rounds will be held.
     #Indeed, since we eliminate 10 players per round, we need 9 rounds to eliminate 90 players.
@@ -37,18 +41,7 @@ def RankedGames(list_players):
         #we don't need to separate players into different games each containing 10 players in a ranking order.
         # All we need to do is just update the player's score directly from the list.
         #However, in a care of details, we implemented the separation of players:
-        games=[]
-        game=[]
-        for player in list_players:
-            #tous les 10 joueurs, on ajoute la liste des 10 joueurs d'une game dans la liste des games.
-            #On prend bien soin de réinitialiser la liste d'une game pour la re-remplir de 10 joueurs.
-            if player.ranking%10==1 and player.ranking!=1:
-                games.append(game)
-                game=[]
-            game.append(player)
-            #In the same time we add those players in different games, we update their score.
-            player.updateScore(ranked_game+3)
-            #We have to consider the 3 random games for calculating the mean score
+        list_players=CreateGames(list_players, ranked_game)
         
         #Now, we need to update their ranking and to do so, we are going to put every players
         #in another AVL_Tree and then extract all the players with an inorder sorting algo
@@ -61,7 +54,7 @@ def RankedGames(list_players):
         #We delete the 10 first players of the list because the inorder algo place players in a list
         #from worst (least point) to best (most point)
         eliminated_this_round = DeleteLastPlayers(list_players)
-        eliminated_players += eliminated_this_round
+        #eliminated_players += eliminated_this_round
         print("\n\nPlayers who have been eliminated on round {} are:".format(ranked_game))
         DisplayPlayers(eliminated_this_round)
         #The 10 worst players have been removed from the tournament, so we can now repeat the same process
@@ -69,7 +62,7 @@ def RankedGames(list_players):
         print("\nHere are the scores and ranking after the game {} :".format(ranked_game))
         DisplayPlayers(list_players)
         ranked_game+=1
-    return eliminated_players, list_players
+    return list_players
 
 def FinalGames(list_players):
     print("\n\n\nLet's start the final games between the top 10 players!")
@@ -99,7 +92,7 @@ def FinalGames(list_players):
 if __name__=='__main__' :
     list_players= CreatePlayers(100)
     RandomGames(list_players)
-    eliminated_players, list_players =RankedGames(list_players)
+    list_players =RankedGames(list_players)
     FinalGames(list_players)
     
     
