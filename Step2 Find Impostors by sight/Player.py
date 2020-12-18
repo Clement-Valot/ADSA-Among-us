@@ -1,11 +1,16 @@
+#This class is very useful to store the following information on Players:
+#   -his ID differentiating him of others
+#   -if he is alive or dead
+#   -if he is innocent or not
+#   -His Impostorness coefficient at each round
+#   -His overall Impostorness coefficient being the sum of all elements of the above matrix
 class Player:
     def __init__(self, ID):
         self.ID = ID
         self.alive=True
         self.innocent=False
-        self.avenged=False
-        self.imp_coeff=0
         self.round_coeff=[0,0,0,0,0,0,0,0,0,0]
+        self.imp_coeff=0
 
 #Method that returns the object player corresponding to ID.
 #We need it since we mostly work with player ID for lists and matrices.

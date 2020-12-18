@@ -2,6 +2,15 @@ import random
 import numpy as np
 from Player import *
 
+#This function is the first core of our algorithm. It creates the adjacency matrix
+# of who saw who before a player is killed by impostors. 
+#It is quite complicated to implement this matrix correctly because several details need
+#to be taken into account:
+#   -Impostors can't see each other
+#   -Dead players musn't be taken into account
+#   -The matrix must be symmetrical meaning a player who saw another one must also have been
+#seen by this player (most difficult part)
+#   -The number of players seen is random between 1 and the number of players seenable
 def Create_Adjacency_Matrix(players, Impostors):
     adjacency_matrix=np.zeros((10,10))
     for player in players:
@@ -21,6 +30,9 @@ def Create_Adjacency_Matrix(players, Impostors):
                 adjacency_matrix[ID,player.ID]=1
     return adjacency_matrix
 
+#This function is the second core of our algorithm. it takes care of the kill of one player.
+#First, we kill the player, then we kill the impostor if he is immediatly busted
+#Second we update Impostorness Coefficient to take into account the death of this player.
 def Kill_Crewmate(players, players_killed, Impostors, list_matrices):
     #We get the list of players impostors saw to kill one of them
     killable_players=Get_Players_Killable(players, Impostors, list_matrices[-1])
@@ -59,16 +71,21 @@ def Update_Impostor_Coeff(players, players_killed, Impostors, list_matrices):
     for matrix in list_matrices:
         round+=1
         suspects=Get_list_seen(players, players_killed[round], matrix)
-        #If this list contains only one player, then he has to be an impostor. 
+        #If this list contains only one player, he has to be an impostor. 
         # Therefore, we remove him from the Impostor list and
         # from players since crewmates will vote against him to eliminate him.
         if(len(suspects)==1 and len(Impostors)!=0):
             impostor=Get_Player_From_ID(players, suspects[0])
-            Impostors.remove(impostor.ID) 
-            impostor.alive=False
             players_killed.append(impostor)
-            print("\nPlayer {} was eliminated by crewmates because he was an impostor.".format(impostor.ID))
-            print("Busted by Length of suspects list updated (after removing dead or innocent suspects).\n")
+            impostor.alive=False
+            if(impostor.ID in Impostors):
+                Impostors.remove(impostor.ID) 
+                print("\nPlayer {} was eliminated by crewmates because he was an impostor.".format(impostor.ID))
+                print("Busted by Length of suspects list updated (after removing dead or innocent suspects).\n")
+            else:
+                print("\nPlayer {} was eliminated by crewmates but he was not an impostor.".format(impostor.ID))
+                print("He was just at the wrong places at the wrong time.")
+            
             #If one impostor gets busted, then we can exonerate all the players he saw during 
             # the game since impostors can’t see each other 
             if(len(Impostors)!=0):
@@ -79,8 +96,8 @@ def Update_Impostor_Coeff(players, players_killed, Impostors, list_matrices):
                 suspect.round_coeff[round]=0
                 if((player.ID in suspects) and (player.alive==True)):
                     suspect.round_coeff[round]=(1/len(suspects))
-        for player in players:
-            player.imp_coeff=sum(player.round_coeff)
+    for player in players:
+        player.imp_coeff=sum(player.round_coeff)
     return players, Impostors, players_killed
 
 #If one impostor is found, then all the players this impostor saw aren't impostors

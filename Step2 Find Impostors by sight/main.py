@@ -56,6 +56,7 @@ while(not Game_ended):
         Most_probable_impostor.alive=False 
         players_killed.append(Most_probable_impostor)
         print("{} was eliminated because he had an Impostorness coefficient equals to {}".format(Most_probable_impostor.ID, Most_probable_impostor.imp_coeff))
+        
         #If the player we decided to kill wasn’t the impostor, then we couldn’t get past 
         # the critical situation and impostors won. Nonetheless, if we succeed to kill 
         # one impostor, then either the game ends and crewmates win since there are no impostors 
@@ -70,6 +71,9 @@ while(not Game_ended):
             if(len(Impostors)!=0):
                 players, Impostors, players_killed = Exoneration(players, players_killed, Impostors, list_matrices) 
     if(len(Impostors)==0):
+        Game_ended=True 
+    elif(10-len(players_killed)-len(Impostors)<=len(Impostors)):
+        Crewmates_won=False
         Game_ended=True 
 
 #After the game ends, we display a winning message 
