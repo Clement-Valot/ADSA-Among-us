@@ -35,8 +35,18 @@ def RankedGames(list_players):
     for i in range (9):
         #Since we don't care about points counting, meaning we assign a random amount of points at each game,
         #we don't need to separate players into different games each containing 10 players in a ranking order.
-        # All we need to do is just update the player's score directly from the list 
+        # All we need to do is just update the player's score directly from the list.
+        #However, in a care of details, we implemented the separation of players:
+        games=[]
+        game=[]
         for player in list_players:
+            #tous les 10 joueurs, on ajoute la liste des 10 joueurs d'une game dans la liste des games.
+            #On prend bien soin de réinitialiser la liste d'une game pour la re-remplir de 10 joueurs.
+            if player.ranking%10==1 and player.ranking!=1:
+                games.append(game)
+                game=[]
+            game.append(player)
+            #In the same time we add those players in different games, we update their score.
             player.updateScore(ranked_game+3)
             #We have to consider the 3 random games for calculating the mean score
         
